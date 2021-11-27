@@ -1,5 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
+import NewPlace from './places/pages/NewPlace';
+import MainNavigation from './shared/components/Navigation/MainNavigation';
 import UserItem from './user/components/UserItem';
 import UsersList from './user/components/UsersList';
 import Users from './user/pages/Users';
@@ -7,8 +14,14 @@ import Users from './user/pages/Users';
 function App() {
   return (
     <Router>
-      <Route path='/' component={Users} />
-      <Redirect from='/' to='/home' />
+      <MainNavigation />
+      <main>
+        <Switch>
+          <Route path='/' component={Users} />
+          <Route path='/places/new' exact component={NewPlace} />
+          <Redirect to='/' />
+        </Switch>
+      </main>
     </Router>
   );
 }
